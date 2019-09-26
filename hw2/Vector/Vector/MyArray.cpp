@@ -77,5 +77,6 @@ MyArray& MyArray::operator=(const MyArray& ar)
 
 MyArray::~MyArray()
 {
-
+	delete [] ar;
+	size = 0;
 }

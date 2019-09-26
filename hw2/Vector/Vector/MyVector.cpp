@@ -33,21 +33,20 @@ int MyVector::getCapacity() const
 
 void MyVector::addCapacity(int n)
 {
-	capacity += n;
+	capacity = capacity +n;
 	int* temp = new int[capacity];
-		for (int i = 0; i <= size; i++)
-			temp[i] = ar[i];		
-		for (int i = size + 1; i <= capacity; i++)
-			temp[i] = 0;
-		ar = temp;
+	for (int i = 0; i < size; i++)
+		temp[i] = ar[i];		
+	for (int i = size + 1; i < capacity; i++)
+		temp[i] = 0;
+	ar = temp;
 }
 
 void MyVector::pushBack(int val)
 {
-	if (size = capacity)
+	if (size == capacity)
 		this->addCapacity(1);
 		ar[size++] = val;
-		size++;
 }
 
 int MyVector::popBack()
@@ -66,6 +65,13 @@ void MyVector::insert(int index, int val)
 {
 	if (index > capacity)
 		addCapacity(index - capacity);
+	if (index < size)
+	{
+		for (int i = size - 1; i >= index; i--)
+		{
+			ar[i+1] = ar[i];
+		}
+	}
 		ar[index] = val;
 		size++;
 }
@@ -73,9 +79,9 @@ void MyVector::insert(int index, int val)
 int MyVector::remove(int index)
 {
 	int t = ar[index];
-	for (int i =index; i<=size; i++)
+	for (int i = index; i< size; i++)
 	{
-		ar[i] = ar[i++];
+		ar[i] = ar[i + 1];
 	}
 	size--;
 	return t;
