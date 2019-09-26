@@ -39,7 +39,6 @@ void MyVector::addCapacity(int n)
 			temp[i] = ar[i];		
 		for (int i = size + 1; i <= capacity; i++)
 			temp[i] = 0;
-		delete [] ar;
 		ar = temp;
 }
 
@@ -73,11 +72,13 @@ void MyVector::insert(int index, int val)
 
 int MyVector::remove(int index)
 {
+	int t = ar[index];
 	for (int i =index; i<=size; i++)
 	{
 		ar[i] = ar[i++];
 	}
 	size--;
+	return t;
 }
 
 MyVector& MyVector::operator=(const MyVector& vec)
